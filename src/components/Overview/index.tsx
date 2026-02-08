@@ -14,10 +14,12 @@ export function Overview({ tasks }: { tasks: Task[] }) {
         {Object.entries(TASK_STATUS_LABELS).map(([status, label]) => {
           const count = tasks.filter(t => t.status === status).length;
           const percentage = totalTask > 0 ? ((count / totalTask) * 100).toFixed(1) : "0";
-          
+        
           return (
             <Title key={status} status={status as Task["status"]}>
-              {label} {count} ({percentage}%)
+              {label} {count} 
+              <br />
+              ({percentage}%)
             </Title>
           );
         })}
