@@ -1,6 +1,8 @@
 import type { Task } from "../../types/Task";
+import { HideShowButton } from "../Button/hideShowButton";
 import { TaskCard } from "../TaskCard";
 import { Wrapper, Title } from "./styles";
+import { useState } from "react";
 
 interface Props {
   title: string;
@@ -11,11 +13,21 @@ interface Props {
 }
 
 export function Column({ title, status, tasks, onMove, onDelete }: Props) {
+  const [showHide, setShowHide] = useState(true);
+
   return (
     <Wrapper>
-      <Title status={status}>{title}</Title>
+      <Title status={status}>
+        {title} 
+        <HideShowButton 
+          onClick={() => setShowHide(!showHide)}
+          mode={showHide}
+        />
 
-      {tasks
+      </Title>
+
+    {showHide &&
+      tasks
         .filter(t => t.status === status)
         .map(task => (
           <TaskCard
@@ -24,7 +36,9 @@ export function Column({ title, status, tasks, onMove, onDelete }: Props) {
             onMove={onMove}
             onDelete={onDelete}
           />
-        ))}
+        ))
+    }
+
     </Wrapper>
   );
 }

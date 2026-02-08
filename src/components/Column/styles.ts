@@ -19,6 +19,9 @@ export const Title = styled.h3<TitleProps>`
   padding: 6px 10px;
   border-radius: 8px;
   font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   background: ${({ status }) => statusColors[status]};
 `;
